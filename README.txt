@@ -1,14 +1,17 @@
-MasterHttpRelay Netlify Exit Node
+MasterHttpRelay Netlify Functions Exit Node
+
+This version uses regular Netlify Functions instead of Edge Functions.
 
 Files:
 - netlify.toml
-- netlify/edge-functions/relay.ts
+- netlify/functions/relay.js
 - public/index.html
 
-Endpoint after deploy:
+Test endpoints after deploy:
 https://YOUR-SITE.netlify.app/relay
+https://YOUR-SITE.netlify.app/.netlify/functions/relay
 
-PowerShell test:
+PowerShell POST test:
 
 $body = @{
   k = "MRAMIRVAHEDI"
@@ -21,7 +24,8 @@ Invoke-RestMethod `
   -Uri "https://YOUR-SITE.netlify.app/relay" `
   -Method POST `
   -ContentType "application/json" `
-  -Body $body
+  -Body $body `
+  -TimeoutSec 60
 
 Expected result:
 s = 200

@@ -1,6 +1,11 @@
 [build]
   publish = "public"
 
-[[edge_functions]]
-  path = "/relay"
-  function = "relay"
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/relay"
+  to = "/.netlify/functions/relay"
+  status = 200
